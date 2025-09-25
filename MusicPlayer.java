@@ -18,6 +18,7 @@ public class MusicPlayer
 {
     // The current player. It might be null.
     private AdvancedPlayer player;
+    private MusicOrganizer musicOrg;
     
     /**
      * Constructor for objects of class MusicFilePlayer
@@ -35,6 +36,11 @@ public class MusicPlayer
     public void playSample(String filename)
     {
         try {
+            //q32
+            if(musicOrg.checkPlayStatus()){
+                killPlayer();
+            }
+            musicOrg.togglePlayingTrue();
             setupPlayer(filename);
             player.play(500);
         }
@@ -42,6 +48,7 @@ public class MusicPlayer
             reportProblem(filename);
         }
         finally {
+            musicOrg.togglePlayingFalse();
             killPlayer();
         }
     }
@@ -59,12 +66,17 @@ public class MusicPlayer
                 public void run()
                 {
                     try {
+                        if(musicOrg.checkPlayStatus()){
+                            killPlayer();
+                        }
+                        musicOrg.togglePlayingTrue();
                         player.play(5000);
                     }
                     catch(JavaLayerException e) {
                         reportProblem(filename);
                     }
                     finally {
+                        musicOrg.togglePlayingFalse();
                         killPlayer();
                     }
                 }
