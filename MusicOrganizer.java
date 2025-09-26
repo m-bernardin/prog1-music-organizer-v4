@@ -16,7 +16,7 @@ public class MusicOrganizer
     // A reader that can read music files and load them as tracks.
     private TrackReader reader;
     //q32
-    private boolean playing;
+    private PlayStatus status;
 
     /**
      * Create a MusicOrganizer
@@ -25,6 +25,7 @@ public class MusicOrganizer
     {
         player = new MusicPlayer();
         reader = new TrackReader();
+        status = new PlayStatus();
         trackList = reader.readTracks("../audio", ".mp3");
         if(! trackList.isEmpty()) {
             System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
@@ -157,20 +158,5 @@ public class MusicOrganizer
             valid = true;
         }
         return valid;
-    }
-    
-    public void togglePlayingTrue()
-    {
-        playing = true;
-    }
-    
-    public void togglePlayingFalse()
-    {
-        playing = false;
-    }
-    
-    public boolean checkPlayStatus()
-    {
-        return playing;
     }
 }

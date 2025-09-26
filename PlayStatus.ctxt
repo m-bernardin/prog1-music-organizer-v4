@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=PlayStatus
+comment0.text=\r\n\ Keeps\ track\ of\ if\ a\ song\ is\ playing\ or\ not\r\n\ q32\r\n
+comment1.params=
+comment1.target=PlayStatus()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ PlayStatus\r\n
+comment2.params=
+comment2.target=void\ togglePlayingTrue()
+comment3.params=
+comment3.target=void\ togglePlayingFalse()
+comment4.params=
+comment4.target=boolean\ checkPlayStatus()
+numComments=5
