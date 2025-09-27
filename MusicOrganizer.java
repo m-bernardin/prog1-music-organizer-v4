@@ -34,6 +34,7 @@ public class MusicOrganizer
             System.out.println("No tracks loaded.");
         }
         System.out.println();
+        setup();
     }
     
     /**
@@ -118,20 +119,33 @@ public class MusicOrganizer
     public void playTrack(int index)
     {
         if(validIndex(index)) {
-            Track track = trackList.get(index);
-            player.startPlaying(track.getFilename());
-            System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
-            //q30
-            track.incrementPlayCount();
+           if(!status.checkStatus()){
+                status.setStatusTrue();
+                Track track = trackList.get(index);
+                player.startPlaying(track.getFilename());
+                System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
+                //q30
+                track.incrementPlayCount();
+           }
+           else{
+                stopPlaying();
+                status.setStatusTrue();
+                Track track = trackList.get(index);
+                player.startPlaying(track.getFilename());
+                System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
+                //q30
+                track.incrementPlayCount();
+            }
         }
     }
-
+    
     /**
      * Stop the player.
      */
     public void stopPlaying()
     {
         player.stop();
+        status.setStatusFalse();
     }
     
     /**
@@ -158,5 +172,15 @@ public class MusicOrganizer
             valid = true;
         }
         return valid;
+    }
+    
+    /**
+     * setup method for my testing for q32
+     */
+    public void setup()
+    {
+        addFile("Lemon Demon - Two Trucks.mp3");
+        addFile("The_Ultimate_Showdown_of_Ultimate_Destiny - Lemon Demon.mp3");
+        addFile("Freak On a Leash - Korn.mp3");
     }
 }

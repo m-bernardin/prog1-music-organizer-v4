@@ -15,17 +15,17 @@ public class PlayStatus
         playing = false;
     }
 
-    public void togglePlayingTrue()
+    public void setStatusTrue()
     {
         playing = true;
     }
     
-    public void togglePlayingFalse()
+    public void setStatusFalse()
     {
         playing = false;
     }
     
-    public boolean checkPlayStatus()
+    public boolean checkStatus()
     {
         return playing;
     }

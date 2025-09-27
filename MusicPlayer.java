@@ -17,15 +17,14 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 public class MusicPlayer
 {
     // The current player. It might be null.
-    private AdvancedPlayer player;
-    private PlayStatus status;
+    private AdvancedPlayer aPlayer;
     
     /**
      * Constructor for objects of class MusicFilePlayer
      */
     public MusicPlayer()
     {
-        player = null;
+        aPlayer = null;
     }
     
     /**
@@ -37,7 +36,7 @@ public class MusicPlayer
     {
         try {
             setupPlayer(filename);
-            player.play(500);
+            aPlayer.play(500);
         }
         catch(JavaLayerException e) {
             reportProblem(filename);
@@ -60,7 +59,7 @@ public class MusicPlayer
                 public void run()
                 {
                     try {
-                        player.play(5000);
+                        aPlayer.play(10000);
                     }
                     catch(JavaLayerException e) {
                         reportProblem(filename);
@@ -71,11 +70,12 @@ public class MusicPlayer
                 }
             };
             playerThread.start();
-        }
+       }
         catch (Exception ex) {
             reportProblem(filename);
         }
     }
+       
     
     public void stop()
     {
@@ -89,8 +89,8 @@ public class MusicPlayer
     private void setupPlayer(String filename)
     {
         try {
-            InputStream is = getInputStream(filename);
-            player = new AdvancedPlayer(is, createAudioDevice());
+            InputStream stream = getInputStream(filename);
+            aPlayer = new AdvancedPlayer(stream, createAudioDevice());
         }
         catch (IOException e) {
             reportProblem(filename);
@@ -132,9 +132,9 @@ public class MusicPlayer
     private void killPlayer()
     {
         synchronized(this) {
-            if(player != null) {
-                player.stop();
-                player = null;
+            if(aPlayer != null) {
+                aPlayer.stop();
+                aPlayer = null;
             }
         }
     }
