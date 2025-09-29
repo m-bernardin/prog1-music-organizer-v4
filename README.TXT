@@ -72,3 +72,4 @@ q37.
         }
         return prime;
     }
+q38. i might be blind but i cant find this method

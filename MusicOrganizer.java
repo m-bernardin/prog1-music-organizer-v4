@@ -182,5 +182,38 @@ public class MusicOrganizer
         addFile("Lemon Demon - Two Trucks.mp3");
         addFile("The_Ultimate_Showdown_of_Ultimate_Destiny - Lemon Demon.mp3");
         addFile("Freak On a Leash - Korn.mp3");
+        
+        Track track1=new Track("Lemon Demon", "Two Trucks", "Nature Tapes", "Lemon Demon - Two Trucks.mp3");
+        Track track2=new Track("Lemon Demon", "The Ultimate Showdown of Ultimate Destiny", "Dinosaurochestra", "The_Ultimate_Showdown_of_Ultimate_Destiny - Lemon Demon.mp3");
+        Track track3=new Track("Korn", "Freak On a Leash", "Follow the Leader", "Freak On a Leash - Korn.mp3");
+        addTrack(track1);
+        addTrack(track2);
+        addTrack(track3);
+    }
+    
+    /**
+     * q39
+     * Allows you to remove all songs which contain a search term in their name
+     */
+    public void removeTitleSearch(String removedName)
+    {
+        for(int i=0; i<trackList.size(); ++i){
+            Track aTrack = trackList.get(i);
+            if(aTrack.getTitle().contains(removedName)){
+                removeTrack(i);
+                --i;
+            }
+        }
+    }
+    
+    public void removeFilenameSearch(String removedName)
+    {
+        for(int i=0; i<trackList.size(); ++i){
+            Track aTrack = trackList.get(i);
+            if(aTrack.getFilename().contains(removedName)){
+                removeTrack(i);
+                --i;
+            }
+        }
     }
 }
